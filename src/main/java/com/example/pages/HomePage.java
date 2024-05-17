@@ -1,20 +1,19 @@
 package com.example.pages;
 
+import com.example.annotation.cucumber.CucumberGlueScope;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.example.util.Navigator.waitOn;
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
 
 @Component
-@Scope("cucumber-glue")
+@CucumberGlueScope
 public class HomePage extends BasePage {
 
     public static final String titleFieldSel = "//div/h1[@class='heading']";
@@ -35,7 +34,6 @@ public class HomePage extends BasePage {
     }
 
     public String getTitle() {
-        waitOn(driver, xpath(titleFieldSel));
         return titleField.getText();
     }
 
