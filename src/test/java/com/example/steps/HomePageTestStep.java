@@ -36,4 +36,9 @@ public class HomePageTestStep extends BaseCucumberTestStep {
         assertThat(homePage.getTitle(), is(title));
     }
 
+    @Then("^I should see a link with text \"([^\"]*)\"$")
+    public void i_should_see_a_link_with_text(String text) throws Throwable {
+        assertThat(homePage.containsLink(text), is(true));
+    }
+
 }
