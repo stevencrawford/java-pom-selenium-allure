@@ -6,12 +6,11 @@ import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 
 import java.net.URI;
+
+import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 
 @Configuration
 @ComponentScan({"com.example.pages"})
@@ -21,10 +20,10 @@ public class CucumberSpringConfiguration {
     @Value(value = "${selenium.grid.url}")
     private String seleniumGridURL;
 
-    @Bean
+    @Bean(destroyMethod = "quit")
+    @Scope(SCOPE_CUCUMBER_GLUE)
     public WebDriver webDriver() throws Exception {
-        WebDriver driver;
-        driver = new RemoteWebDriver(URI.create(seleniumGridURL).toURL(), getCapabilities());
+        WebDriver driver = new RemoteWebDriver(URI.create(seleniumGridURL).toURL(), getCapabilities());
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         return driver;

@@ -11,7 +11,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.event.annotation.AfterTestClass;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,13 +45,6 @@ public class BaseCucumberTestStep {
 
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("return window.sessionStorage.clear();");
-    }
-
-    @AfterTestClass
-    public void cleanUp() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
 
 }

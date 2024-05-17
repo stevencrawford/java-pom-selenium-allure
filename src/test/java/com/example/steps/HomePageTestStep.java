@@ -16,7 +16,6 @@ public class HomePageTestStep extends BaseCucumberTestStep {
     @Autowired
     private HomePage homePage;
 
-
     @Before
     public void setUpBeforeScenarioAndBeforeFeature() throws Exception {
         super.setUp();
