@@ -1,0 +1,1 @@
+{"2ade3a2b8e9408c3b64016ffe8932fac":{"statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1},"items":[{"uid":"17be8eac48491cf1","reportUrl":"https://stevencrawford.github.io/java-pom-selenium-allure/6//#testresult/17be8eac48491cf1","status":"passed","time":{"start":1715943433770,"stop":1715943434900,"duration":1130}}]}}
