@@ -12,5 +12,6 @@ jobs:
           java-version: '21'
           distribution: 'adopt'
           cache: 'maven'
-      - run: docker-compose up -d
-      - run: make test
+      - run: |
+          make selenium-up
+          make test
