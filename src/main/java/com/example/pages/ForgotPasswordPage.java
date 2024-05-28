@@ -1,10 +1,8 @@
 package com.example.pages;
 
 import com.example.annotation.cucumber.CucumberGlueScope;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,11 +17,6 @@ public class ForgotPasswordPage extends BasePage {
 
     @FindBy(xpath = RETRIEVE_PASSWORD_BUTTON_XPATH)
     private WebElement retrievePasswordButton;
-
-    @Autowired
-    public ForgotPasswordPage(WebDriver driver) {
-        super(driver);
-    }
 
     public void enterEmail(String email) {
         emailInput.sendKeys(email);

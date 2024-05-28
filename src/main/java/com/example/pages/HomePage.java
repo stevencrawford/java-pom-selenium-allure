@@ -1,10 +1,8 @@
 package com.example.pages;
 
 import com.example.annotation.cucumber.CucumberGlueScope;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,11 +25,6 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = allLinksFieldSel)
     List<WebElement> allLinksField;
-
-    @Autowired
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
 
     public String getTitle() {
         return titleField.getText();

@@ -22,7 +22,7 @@ public class CucumberSpringConfiguration {
 
     @Bean(destroyMethod = "quit")
     @Scope(SCOPE_CUCUMBER_GLUE)
-    public WebDriver webDriver() throws Exception {
+    public WebDriver driver() throws Exception {
         WebDriver driver = new RemoteWebDriver(URI.create(seleniumGridURL).toURL(), getCapabilities());
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();

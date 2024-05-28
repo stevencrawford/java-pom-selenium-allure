@@ -2,8 +2,7 @@ package com.example.steps;
 
 import com.example.pages.ForgotPasswordPage;
 import com.example.util.Navigator;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,17 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ForgotPasswordTestStep extends BaseCucumberTestStep {
+public class ForgotPasswordPageTestStep extends BaseCucumberTestStep {
 
     @Autowired
     private ForgotPasswordPage forgotPasswordPage;
 
-    @Before
-    public void setUpBeforeScenarioAndBeforeFeature() throws Exception {
-        super.setUp();
-    }
-
-    @After
+    @AfterStep
     public void tearDownAfterScenario(Scenario scenario) throws Exception {
         super.tearDown(scenario);
     }
@@ -32,7 +26,6 @@ public class ForgotPasswordTestStep extends BaseCucumberTestStep {
     @Given("I navigate to the forgot password page")
     public void i_navigate_to_the_forgot_password_page() throws Throwable {
         Navigator.goTo(driver, "/forgot_password");
-        forgotPasswordPage.init();
     }
 
     @When("I enter an email address {string}")

@@ -1,7 +1,6 @@
 package com.example.steps;
 
 import com.example.configuration.CucumberSpringConfiguration;
-import com.example.util.Navigator;
 import io.cucumber.java.Scenario;
 import io.cucumber.spring.CucumberContextConfiguration;
 import io.qameta.allure.Allure;
@@ -26,11 +25,7 @@ public class BaseCucumberTestStep {
     @Autowired
     protected WebDriver driver;
 
-    public void setUp() throws Exception {
-        Navigator.goTo(driver, "/");
-    }
-
-    public void tearDown(Scenario scenario) throws Exception {
+    protected void tearDown(Scenario scenario) throws Exception {
         if (scenario.isFailed()) {
             if (!erroredScenarios.containsKey(scenario.getId())) {
                 Allure.getLifecycle().addAttachment(
