@@ -24,5 +24,9 @@ target/
 hs_err_pid*
 replay_pid*
 
-# Allure local results
+# Reports
+reports/
 allure-results/
+
+# IntelliJ files
+.idea
