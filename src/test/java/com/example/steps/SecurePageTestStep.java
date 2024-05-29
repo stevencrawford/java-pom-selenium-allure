@@ -2,26 +2,23 @@ package com.example.steps;
 
 import com.example.pages.SecurePage;
 import com.example.util.Navigator;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.openqa.selenium.WebDriver;
 
 import static com.example.util.Navigator.verifyIsOnPage;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SecurePageTestStep extends BaseCucumberTestStep {
+@Data
+@RequiredArgsConstructor
+public class SecurePageTestStep {
 
-    @Autowired
-    private SecurePage securePage;
-
-    @AfterStep
-    public void tearDownAfterScenario(Scenario scenario) throws Exception {
-        super.tearDown(scenario);
-    }
+    private final WebDriver driver;
+    private final SecurePage securePage;
 
     @Then("I should be on the secure page")
     public void i_should_be_on_the_secure_page() throws Throwable {

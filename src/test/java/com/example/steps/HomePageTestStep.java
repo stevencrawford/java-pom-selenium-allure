@@ -1,25 +1,22 @@
 package com.example.steps;
 
 import com.example.pages.HomePage;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.openqa.selenium.WebDriver;
 
 import static com.example.util.Navigator.goTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class HomePageTestStep extends BaseCucumberTestStep {
+@Data
+@RequiredArgsConstructor
+public class HomePageTestStep {
 
-    @Autowired
-    private HomePage homePage;
-
-    @AfterStep
-    public void tearDownAfterScenario(Scenario scenario) throws Exception {
-        super.tearDown(scenario);
-    }
+    private final WebDriver driver;
+    private final HomePage homePage;
 
     @Given("^I navigate to the homepage$")
     public void i_navigate_to_the_homepage() throws Throwable {

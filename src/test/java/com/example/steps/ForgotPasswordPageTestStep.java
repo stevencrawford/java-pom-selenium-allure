@@ -2,26 +2,23 @@ package com.example.steps;
 
 import com.example.pages.ForgotPasswordPage;
 import com.example.util.Navigator;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.By;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openqa.selenium.WebDriver;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ForgotPasswordPageTestStep extends BaseCucumberTestStep {
+@Data
+@RequiredArgsConstructor
+public class ForgotPasswordPageTestStep {
 
-    @Autowired
-    private ForgotPasswordPage forgotPasswordPage;
-
-    @AfterStep
-    public void tearDownAfterScenario(Scenario scenario) throws Exception {
-        super.tearDown(scenario);
-    }
+    private final WebDriver driver;
+    private final ForgotPasswordPage forgotPasswordPage;
 
     @Given("I navigate to the forgot password page")
     public void i_navigate_to_the_forgot_password_page() throws Throwable {

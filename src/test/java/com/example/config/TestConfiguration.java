@@ -1,7 +1,6 @@
-package com.example.configuration;
+package com.example.config;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -13,9 +12,9 @@ import java.net.URI;
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 
 @Configuration
-@ComponentScan({"com.example.pages"})
+@ComponentScan({"com.example"})
 @PropertySource("classpath:application.properties")
-public class CucumberSpringConfiguration {
+public class TestConfiguration {
 
     @Value(value = "${selenium.grid.url}")
     private String seleniumGridURL;
@@ -38,14 +37,6 @@ public class CucumberSpringConfiguration {
             default -> capabilities.setBrowserName(Browser.CHROME.browserName());
         }
         return capabilities;
-    }
-
-    private DesiredCapabilities getMobileCapabilities() {
-        DesiredCapabilities dc = new DesiredCapabilities();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setExperimentalOption("w3c", false);
-        dc.merge(chromeOptions);
-        return dc;
     }
 
 }

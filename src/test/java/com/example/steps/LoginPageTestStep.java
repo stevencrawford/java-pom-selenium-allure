@@ -2,29 +2,25 @@ package com.example.steps;
 
 import com.example.pages.LoginPage;
 import com.example.pages.SecurePage;
+import com.example.steps.config.CucumberConfiguration;
 import com.example.util.Navigator;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.openqa.selenium.WebDriver;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class LoginPageTestStep extends BaseCucumberTestStep {
+@Data
+@RequiredArgsConstructor
+public class LoginPageTestStep extends CucumberConfiguration {
 
-    @Autowired
-    private LoginPage loginPage;
-
-    @Autowired
-    private SecurePage securePage;
-
-    @AfterStep
-    public void tearDownAfterScenario(Scenario scenario) throws Exception {
-        super.tearDown(scenario);
-    }
+    private final WebDriver driver;
+    private final LoginPage loginPage;
+    private final SecurePage securePage;
 
     @Given("I navigate to the login page")
     public void i_navigate_to_the_login_page() throws Throwable {
@@ -39,7 +35,7 @@ public class LoginPageTestStep extends BaseCucumberTestStep {
 
     @When("I click the Login button")
     public void i_click_the_login_button() throws Throwable {
-        this.securePage = loginPage.clickLoginButton();
+        loginPage.clickLoginButton();
     }
 
     @Then("I should be logged in successfully")

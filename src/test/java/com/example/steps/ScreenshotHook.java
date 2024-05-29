@@ -1,31 +1,30 @@
 package com.example.steps;
 
-import com.example.configuration.CucumberSpringConfiguration;
+import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
-import io.cucumber.spring.CucumberContextConfiguration;
 import io.qameta.allure.Allure;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-@CucumberContextConfiguration
-@SpringBootTest(classes = CucumberSpringConfiguration.class)
-public class BaseCucumberTestStep {
+@Data
+@RequiredArgsConstructor
+public class ScreenshotHook {
 
     private static final Map<String, Boolean> erroredScenarios = new HashMap<>();
 
-    @Autowired
-    protected WebDriver driver;
+    private final WebDriver driver;
 
-    protected void tearDown(Scenario scenario) throws Exception {
+    @After
+    public void tearDown(Scenario scenario) throws Exception {
         if (scenario.isFailed()) {
             if (!erroredScenarios.containsKey(scenario.getId())) {
                 Allure.getLifecycle().addAttachment(
@@ -41,6 +40,4 @@ public class BaseCucumberTestStep {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("return window.sessionStorage.clear();");
     }
-
 }
-

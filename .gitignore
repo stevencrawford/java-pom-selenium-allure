@@ -26,7 +26,7 @@ replay_pid*
 
 # Reports
 reports/
-allure-results/
+allure-report/
 
 # IntelliJ files
-.idea
+.idea/
