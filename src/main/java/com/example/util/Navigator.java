@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
+import static java.lang.String.format;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 public final class Navigator {
@@ -29,6 +30,13 @@ public final class Navigator {
                 .withTimeout(Duration.of(30, ChronoUnit.SECONDS))
                 .pollingEvery(Duration.of(5, ChronoUnit.SECONDS))
                 .until(presenceOfElementLocated(elementSelector));
+    }
+
+    public static void verifyIsOnPage(WebDriver driver, String expectedUrl) {
+        String currentUrl = driver.getCurrentUrl();
+        if (!currentUrl.endsWith(expectedUrl)) {
+            throw new IllegalStateException(format("Expected URL to end with %s, but found %s", expectedUrl, currentUrl));
+        }
     }
 
     /**

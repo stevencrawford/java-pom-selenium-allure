@@ -23,7 +23,7 @@ jobs:
 
       - name: Start Selenium Grid and run tests
         run: |
-          docker-compose up -d
+          make selenium-up
           make test
 
       # For more details read - https://allurereport.org/docs/integrations-github/#3-set-up-publishing-github-pages

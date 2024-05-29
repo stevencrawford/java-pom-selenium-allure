@@ -1,30 +1,28 @@
-package com.example.configuration;
+package com.example.config;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 
 import java.net.URI;
 
+import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+
 @Configuration
-@ComponentScan({"com.example.pages"})
+@ComponentScan({"com.example"})
 @PropertySource("classpath:application.properties")
-public class CucumberSpringConfiguration {
+public class TestConfiguration {
 
     @Value(value = "${selenium.grid.url}")
     private String seleniumGridURL;
 
-    @Bean
-    public WebDriver webDriver() throws Exception {
-        WebDriver driver;
-        driver = new RemoteWebDriver(URI.create(seleniumGridURL).toURL(), getCapabilities());
+    @Bean(destroyMethod = "quit")
+    @Scope(SCOPE_CUCUMBER_GLUE)
+    public WebDriver driver() throws Exception {
+        WebDriver driver = new RemoteWebDriver(URI.create(seleniumGridURL).toURL(), getCapabilities());
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         return driver;
@@ -39,14 +37,6 @@ public class CucumberSpringConfiguration {
             default -> capabilities.setBrowserName(Browser.CHROME.browserName());
         }
         return capabilities;
-    }
-
-    private DesiredCapabilities getMobileCapabilities() {
-        DesiredCapabilities dc = new DesiredCapabilities();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setExperimentalOption("w3c", false);
-        dc.merge(chromeOptions);
-        return dc;
     }
 
 }

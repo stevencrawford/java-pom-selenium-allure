@@ -13,6 +13,7 @@ services:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_SESSION_TIMEOUT=180
 
   edge:
     image: selenium/node-edge:4.20.0-20240505
@@ -23,6 +24,7 @@ services:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_SESSION_TIMEOUT=180
 
   firefox:
     image: selenium/node-firefox:4.20.0-20240505
@@ -33,6 +35,7 @@ services:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_SESSION_TIMEOUT=180
 
   selenium-hub:
     image: selenium/hub:4.20.0-20240505
@@ -41,3 +44,5 @@ services:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
+    environment:
+      - SE_NODE_MAX_SESSIONS=3
