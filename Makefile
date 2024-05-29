@@ -1,4 +1,4 @@
-.PHONY: selenium test clean
+.PHONY: selenium-up selenium-down test clean
 selenium-up:
 	docker-compose -f ./docker/selenium/docker-compose.yml up -d
 
