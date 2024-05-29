@@ -1,0 +1,8 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"","Home Page Content Test","Verify Home Page title is present and correct","0","0","1","0","0"
+"","Login","User cannot log in with invalid credentials","0","0","1","0","0"
+"","Home Page Content Test","Verify Home Page has sample of correct links","0","0","5","0","0"
+"","Login","User can log out from the secure page","0","0","1","0","0"
+"","Login","User cannot log in with various invalid credential combinations","0","0","4","0","0"
+"","Login","User can log in with valid credentials","0","0","1","0","0"
+"","Login","User cannot access the secure page directly without logging in","0","0","1","0","0"
